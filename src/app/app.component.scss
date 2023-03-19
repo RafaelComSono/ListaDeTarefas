@@ -1,0 +1,25 @@
+.word-wrap-break {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  
+  .d-flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .drag-handle {
+    margin-left: 12px;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 56px;
+    left: -250px;
+    bottom: 0;
+    width: 250px;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+  }
