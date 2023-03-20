@@ -21,7 +21,7 @@ export class AppComponent {
   selectAll: boolean = false;
   tasksMaxLength: number = 10;
   sortable: any;
-  
+
   ngOnInit() {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
@@ -33,6 +33,7 @@ export class AppComponent {
       this.sortable = Sortable.create(list, {
         handle: '.drag-handle',
         animation: 150,
+        forceFallback: true,
         onEnd: (event: any) => {
           this.reorderTasks(event.oldIndex, event.newIndex);
         },
@@ -58,7 +59,7 @@ export class AppComponent {
     this.saveTasks();
   }
 
-  removeSelectedTasks(){
+  removeSelectedTasks() {
     this.tasks = this.tasks.filter(task => !task.completed);
     this.selectAll = false;
     this.saveTasks();
@@ -79,7 +80,7 @@ export class AppComponent {
     this.saveTasks();
   }
 
-  checkSelects(){
+  checkSelects() {
     this.selectAll = this.tasks.every(task => task.completed)
   }
 }
