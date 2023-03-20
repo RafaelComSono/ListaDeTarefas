@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center m-5">
   <div class="col-md-6">
-    <div class="card">
+    <div class="card border-0">
       <div class="card-header">
         <h1 class="text-center">{{title}}</h1>
       </div>
@@ -10,7 +10,7 @@
             <input class="form-check-input" type="checkbox" [(ngModel)]="selectAll" (change)="selectAllTasks()">
             <label class="form-check-label">Selecionar todas as tarefas</label>
           </div>
-          <button type="button" class="teste-drive btn btn-light btn-sm" (click)="removeSelectedTasks()">
+          <button type="button" class="btn btn-light btn-sm" (click)="removeSelectedTasks()">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -21,7 +21,9 @@
               <input [(ngModel)]="newTask" placeholder="Nova tarefa..." maxlength="30" name="first"
                 class="form-control">
                 <button type="submit" (click)="addTask()" class="btn btn-primary"
-                  [disabled]="tasks.length >= tasksMaxLength"><i class="fa-solid fa-plus"></i></button>
+                  [disabled]="tasks.length >= tasksMaxLength">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
           </div>
         </form>
