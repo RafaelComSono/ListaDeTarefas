@@ -78,4 +78,8 @@ export class AppComponent {
     this.tasks.splice(newIndex, 0, taskToMove);
     this.saveTasks();
   }
+
+  checkSelects(){
+    this.selectAll = this.tasks.every(task => task.completed)
+  }
 }
