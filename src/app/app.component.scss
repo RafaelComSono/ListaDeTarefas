@@ -35,3 +35,8 @@
   .card-header h1 {
     color: fff;
   }
+
+  .btn.dropdown-toggle::after {
+    display: none;
+  }
+  

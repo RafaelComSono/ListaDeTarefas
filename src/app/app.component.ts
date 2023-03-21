@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import Sortable from 'sortablejs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -6,6 +6,7 @@ export interface Task {
   id: string;
   description: string;
   completed: boolean;
+  editionMode: boolean;
 }
 
 @Component({
@@ -21,12 +22,20 @@ export class AppComponent {
   selectAll: boolean = false;
   tasksMaxLength: number = 10;
   sortable: any;
+  isMobile: boolean = window.innerWidth < 880;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile = window.innerWidth < 880;
+  }
 
   ngOnInit() {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
       this.tasks = JSON.parse(storedTasks);
     }
+    console.log(window.innerWidth)
+    this.tasks.forEach(task => task.editionMode = false)
 
     const list = document.getElementById('tasks-list');
     if (list) {
@@ -46,12 +55,32 @@ export class AppComponent {
       const task: Task = {
         id: uuidv4(),
         description: this.newTask,
-        completed: false
+        completed: false,
+        editionMode: false
       };
       this.tasks.push(task);
       this.newTask = '';
       this.saveTasks();
     }
+  }
+
+  enableEdition(index: number) {
+    this.tasks[index].editionMode = true;
+  }
+
+  editTaskDescription(description: string, index: number) {
+    let task = this.tasks[index]
+    if (description === task.description)
+    this.cancelEdition(index)
+    else if (description.trim() !== '' && description.length < this.tasksMaxLength) {
+      task.description = description;
+      this.cancelEdition(index)
+      this.saveTasks();
+    }
+  }
+
+  cancelEdition(index: number) {
+    this.tasks[index].editionMode = false;
   }
 
   removeTask(index: number) {
