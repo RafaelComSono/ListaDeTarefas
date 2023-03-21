@@ -49,15 +49,15 @@
               </div>
               <div class="d-flex" *ngIf="!task.editionMode">
                 <div *ngIf="!isMobile">
-                <button type="button" class="btn btn-light btn-sm remove-and-drag" (click)="removeTask(i)">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-                <button class="btn btn-light btn-sm mx-2" (click)="enableEdition(i)">
+                <button class="btn btn-light btn-sm py-2" (click)="enableEdition(i)">
                   <i class="fa-solid fa-pen"></i>
+                </button>
+                <button type="button" class="btn btn-light py-2 btn-sm remove-and-drag mx-2" (click)="removeTask(i)">
+                  <i class="fa-solid fa-trash"></i>
                 </button>
                 </div>
                 <div ngbDropdown *ngIf="isMobile" class="mx-2 custom-dropdown">
-                  <button class="btn btn-light" id="dropdownButton" ngbDropdownToggle><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                  <button class="btn btn-light btn-sm" id="dropdownButton" ngbDropdownToggle><i class="fa-solid fa-ellipsis-vertical"></i></button>
                   <div class="dropdown-menu" aria-labelledby="dropdownButton" ngbDropdownMenu>
                     <button class="dropdown-item" (click)="enableEdition(i)">Editar</button>
                     <button class="dropdown-item" (click)="removeTask(i)">Remover</button>
