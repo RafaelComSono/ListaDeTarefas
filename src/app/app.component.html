@@ -18,7 +18,7 @@
           <div class="form-group">
             <label for="newTask">Adicionar Tarefa:</label>
             <div class="input-group py-2">
-              <input [(ngModel)]="newTask" placeholder="Nova tarefa..." maxlength="20" name="first"
+              <input [(ngModel)]="newTask" placeholder="Nova tarefa..." maxlength="15" name="first"
                 class="form-control">
               <button type="submit" (click)="addTask()" class="btn btn-primary"
                 [disabled]="tasks.length >= tasksMaxLength">
@@ -38,7 +38,7 @@
                 <label class="form-check-label px-2 drag-handle">{{ task.description }}</label>
               </div>
               <div class="input-group py-2" *ngIf="task.editionMode">
-                <input placeholder="Nova descrição..." maxlength="20" name="first" [value]="task.description"
+                <input placeholder="Nova descrição..." maxlength="15" name="first" [value]="task.description"
                   class="form-control" #taskInput>
                 <button type="submit" (click)="cancelEdition(i)" class="btn btn-danger mr-1">
                   <i class="fa-solid fa-ban"></i>

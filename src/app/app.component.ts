@@ -20,7 +20,7 @@ export class AppComponent {
   newTask: string = '';
   title: string = 'Lista de Tarefas';
   selectAll: boolean = false;
-  tasksMaxLength: number = 10;
+  tasksMaxLength: number = 15;
   sortable: any;
   isMobile: boolean = window.innerWidth < 880;
 
@@ -51,7 +51,7 @@ export class AppComponent {
   }
 
   addTask() {
-    if (this.newTask.trim() !== '' && this.tasks.length < this.tasksMaxLength) {
+    if (this.newTask.trim() !== '' && this.tasks.length <= this.tasksMaxLength) {
       const task: Task = {
         id: uuidv4(),
         description: this.newTask,
@@ -72,7 +72,7 @@ export class AppComponent {
     let task = this.tasks[index]
     if (description === task.description)
     this.cancelEdition(index)
-    else if (description.trim() !== '' && description.length < this.tasksMaxLength) {
+    else if (description.trim() !== '' && description.length <= this.tasksMaxLength) {
       task.description = description;
       this.cancelEdition(index)
       this.saveTasks();
